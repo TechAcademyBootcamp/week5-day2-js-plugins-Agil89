@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="slick/slick.css">
+    <link rel="stylesheet" href="slick/slick-theme.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <header class="d-flex justify-content-between ml-4 mr-4 fixed-top align-items-center bg-light">
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <ul class="extra-menu">
+            <li class="extra-menu-li"><a href="">Home</a></li>
+            <li class="extra-menu-li"><a href="">Checkout</a></li>
+            <li class="extra-menu-li"><a href="">Profile</a></li>
+            <li class="extra-menu-li"><a href="">Order</a></li>
+            <li class="extra-menu-li"><a href="">Order Invoice</a></li>
+            <li class="extra-menu-li"><a href="">Need Help</a></li>
+            <li class="extra-menu-li"><a href="">Offer</a></li>
+        </ul>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#"><img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDkuMTI0IiBoZWlnaHQ9IjE4Ij48ZyBkYXRhLW5hbWU9Ikdyb3VwIDI4MjkiPjxwYXRoIGRhdGEtbmFtZT0iUGF0aCAyNjkwIiBkPSJNMCAuNjUybDIuMDcyLjAyNkMzLjgxNC42OTkgNS41NjMuNjI3IDcuMjk2Ljc2M2E1LjIgNS4yIDAgMDE0LjggNC4xNjEgNS4yMjIgNS4yMjIgMCAwMS00LjQyMyA2LjQ4NCAyMS42NjIgMjEuNjYyIDAgMDEtMy40MjIuMTE3Yy0uMzkzIDAtLjQ4Ni4xMjQtLjQ4Mi41LjAxOSAxLjcuMDA4IDMuNDA2LjAwOCA1LjEwOXYuNTM0SDB6bTMuODMyIDcuNjY5Yy40NyAwIC45LjAxNyAxLjMxOCAwYTEwLjQ0OSAxMC40NDkgMCAwMDEuNzgxLS4xNTMgMS45NDQgMS45NDQgMCAwMDEuNTI3LTEuOTUgMS45NzQgMS45NzQgMCAwMC0xLjI5My0yLjA0IDEwLjc0OCAxMC43NDggMCAwMC0zLjMzMi0uMjI5eiIgZmlsbD0iIzBkMTEzNiIvPjxwYXRoIGRhdGEtbmFtZT0iUGF0aCAyNjkxIiBkPSJNMTA5LjEyNCA5LjM2YTQuMjY5IDQuMjY5IDAgMDAtMi4wMTMtLjAxOSAyLjUyMSAyLjUyMSAwIDAwLTEuOSAyLjQzMWMtLjA2OSAxLjc0MS0uMDQ3IDMuNDg1LS4wNjMgNS4yMjd2LjYyN2gtMy41ODFWNS44MDRoMy40NjZ2MS40MjVhMy4yNjYgMy4yNjYgMCAwMTIuMzQ5LTEuNDc3IDEwLjk0NiAxMC45NDYgMCAwMTEuNzQuMDEzeiIgZmlsbD0iIzAwOGQ3MSIvPjxwYXRoIGRhdGEtbmFtZT0iUGF0aCAyNjkyIiBkPSJNNDguODIzLjY3OGguNTE2YzIuMjM2LjAyIDQuNDc4LS4wNjQgNi43LjA4OWE0LjQxMiA0LjQxMiAwIDAxNC4yODMgMy41ODUgMy44NzYgMy44NzYgMCAwMS0yLjE4MiA0LjQyNS40LjQgMCAwMC0uMDg5LjA2IDExLjAyOCAxMS4wMjggMCAwMTEuNTE1LjkyOSA0LjMzOSA0LjMzOSAwIDAxLjc2NCA1LjQzMSA0Ljc2MSA0Ljc2MSAwIDAxLTQuMTk1IDIuNDI1Yy0yLjM5My4wODQtNC43OTEuMDI3LTcuMTg3LjAzYS41NDYuNTQ2IDAgMDEtLjEzLS4wMzh6bTMuNjYzIDEzLjloMi4xYTcuMDgzIDcuMDgzIDAgMDAuOC0uMDMzIDEuOTMyIDEuOTMyIDAgMDAxLjgxLTEuOCAxLjgxNiAxLjgxNiAwIDAwLTEuNDA2LTJjLTEuMDc4LS4xNjQtMi4xODQtLjE1NS0zLjMwNS0uMjIyem0wLTcuMWMuNzU5IDAgMS40ODguMDE5IDIuMjE2LS4wMDlhMy4xMTkgMy4xMTkgMCAwMC45My0uMTkzIDEuNjUgMS42NSAwIDAwMS4wOTItMS42ODUgMS41NjcgMS41NjcgMCAwMC0xLjIxLTEuNjM0Yy0uOTg3LS4xNi0yLS4xNTktMy4wMjgtLjIyOXoiIGZpbGw9IiMwMDhkNzEiLz48cGF0aCBkYXRhLW5hbWU9IlBhdGggMjY5MyIgZD0iTTM4LjQ1OCA5LjY4NmMuODQ4LS45MzUgMS43NjEtMS44MiAyLjUyNS0yLjgxOWEyLjU0OCAyLjU0OCAwIDAxMi41LTEuMTE0YzEuMDI1LjEgMi4wNjYuMDIxIDMuMjA4LjAyMWwtNC42MzQgNC45ODIgNC43MzQgNi45Yy0xLjMgMC0yLjUxOS0uMDMtMy43MzcuMDE0YTEuMDY5IDEuMDY5IDAgMDEtMS4wOC0uNTc3Yy0uNzY0LTEuMjE0LTEuNTgzLTIuMzkzLTIuNDE2LTMuNjM5LS40LjQzNi0uNzgxLjgzNi0xLjEzOCAxLjI1OC0uMDcxLjA4NC0uMDU4LjI1Mi0uMDU5LjM4MnYyLjUzNmgtMy41NjdWLjM1OGgzLjU1NHY5LjN6IiBmaWxsPSIjMGQxMTM2Ii8+PHBhdGggZGF0YS1uYW1lPSJQYXRoIDI2OTQiIGQ9Ik03My40OTMgMTcuNjQ0aC0zLjE5NWwtLjEyNi0xLjE3NGExMi40MyAxMi40MyAwIDAxLTEuMTg1Ljk2OGMtMS40MS45LTQuNDU5Ljg3My01Ljc1Ny0xLjIzNWEzLjQ0NSAzLjQ0NSAwIDAxMi4zMjktNS4yMjhjMS4wNjktLjI1OCAyLjE3MS0uMzg0IDMuMjU3LS41Ny4wOTItLjAxNi4xODMtLjAzMy4yNzUtLjA0N2EuODA5LjgwOSAwIDAwLjc3MS0uNTg3IDEuMDE4IDEuMDE4IDAgMDAtLjI5NS0xLjAyMyAyLjA3MyAyLjA3MyAwIDAwLTIuMDg1LS40MjggMS44MTEgMS44MTEgMCAwMC0xLjMzOCAxLjM0NWMtLjAxNi4wNS0uMDEzLjEwNi0uMDI2LjE1N2ExLjE0MiAxLjE0MiAwIDAxLS4wNjMuMTQzbC0xLjU0Ny0uM2MtLjUxNy0uMS0xLjAxMS0uMjA5LTEuNTQ2LS4zMjFhMy42OSAzLjY5IDAgMDEuODU5LTIuMDc1IDQuNzg5IDQuNzg5IDAgMDEyLjgyMy0xLjY3OCA3LjIzIDcuMjMgMCAwMTQuMTIyLjI2NCAzLjkgMy45IDAgMDEyLjYyOSAzLjc4MWMuMDU5IDEuNjQ4LjAxIDMuMy4wMjQgNC45NS4wMSAxLjAwNy4wNDggMi4wMTYuMDc0IDMuMDU4em0tMy42MS01LjE3NmMtLjQyMy4wNjMtLjgyLjEtMS4yMDcuMTg1YTE0LjY4OCAxNC42ODggMCAwMC0xLjgzNy40NjhjLS40NDkuMTYxLS41NTcuNi0uNTQ4IDEuMDU5YTEuMTMxIDEuMTMxIDAgMDAuNTg1IDEuMDIxIDIuMjM1IDIuMjM1IDAgMDAyLjY1OC0uNzE5IDMuMTc4IDMuMTc4IDAgMDAuMzQ5LTIuMDEzeiIgZmlsbD0iIzAwOGQ3MSIvPjxwYXRoIGRhdGEtbmFtZT0iUGF0aCAyNjk1IiBkPSJNOTguNTA5IDE3LjYzOWgtMy4ybC0uMTI1LTEuMjI4YS44NjIuODYyIDAgMDAtLjE1NC4xMjljLTEuMzQ1IDEuOTM0LTQuOTE4IDEuODY5LTYuNDE3LjE1OGEzLjQyMyAzLjQyMyAwIDAxMS40NTctNS41NTQgMjkuNzI0IDI5LjcyNCAwIDAxMy4yMzYtLjY1NmMuMjc0LS4wNTMuNTUzLS4wODEuODI2LS4xMzhhLjg4OC44ODggMCAwMC40OS0xLjU2MyAyLjAyNiAyLjAyNiAwIDAwLTIuMDMxLS40ODYgMS44IDEuOCAwIDAwLTEuNDExIDEuMzE2Yy0uMDM0LjEtLjA1LjItLjA4Ni4zNTlsLTMuMTIzLS42MjlhMy45MzEgMy45MzEgMCAwMTEuOTU0LTMuMDM1IDYuNTI3IDYuNTI3IDAgMDE2LjM0My0uMjI0QTMuNjc1IDMuNjc1IDAgMDE5OC40IDkuNDk3Yy4wNjQgMS41ODEuMDIxIDMuMTY3LjAzNyA0Ljc1MS4wMTYgMS4xMTIuMDQ4IDIuMjMuMDcyIDMuMzkxem0tMy41NDUtNS4xODJjLS44LjEyNS0xLjUuMjEzLTIuMTg3LjM0OWEzLjU2MSAzLjU2MSAwIDAwLS45NjYuMzQgMS4wNDcgMS4wNDcgMCAwMC0uNSAxLjA5MiAxLjExNCAxLjExNCAwIDAwLjYzNS45OSAyLjEgMi4xIDAgMDAyLjg1My0xLjMgMTAuNzgyIDEwLjc4MiAwIDAwLjE2NS0xLjQ2OHoiIGZpbGw9IiMwMDhkNzEiLz48cGF0aCBkYXRhLW5hbWU9IlBhdGggMjY5NiIgZD0iTTMyLjM2NyA5LjU0NGwtMy4wNTguOTE4YTcuMDIzIDcuMDIzIDAgMDAtMS4wMDctMS4yMjcgMi42NTMgMi42NTMgMCAwMC00LjE0NyAxLjU3OCA0LjY0OSA0LjY0OSAwIDAwLS4wMDYgMS43NzMgMi41NjEgMi41NjEgMCAwMDIuMjIyIDIuMDUyIDIuNSAyLjUgMCAwMDIuODMtMS40NDRjLjA1My0uMS4yNDMtLjIyNi4zMy0uMi45NjkuMjc2IDEuOTMxLjU3OSAyLjk1Ni44OTRhNy43NzMgNy43NzMgMCAwMS0uMjguNzkyQTUuNTc2IDUuNTc2IDAgMDEyNi45NTQgMThhNi4yODcgNi4yODcgMCAxMS0uMTYzLTEyLjU2OSA1Ljc1MyA1Ljc1MyAwIDAxNC42MzggMi4wODUgNC42MjUgNC42MjUgMCAwMS45MzggMi4wMjh6IiBmaWxsPSIjMGQxMTM2Ii8+PHBhdGggZGF0YS1uYW1lPSJQYXRoIDI2OTciIGQ9Ik03NS45NDcgNS43OTJoOS42NzRjLjAwNi4xMjYuMDE4LjI1Mi4wMTguMzc5IDAgLjYzOS0uMDM4IDEuMjgxLjAxMyAxLjkxNmExLjQyNCAxLjQyNCAwIDAxLS40ODMgMS4xODVjLTEuNTcyIDEuNjI3LTMuMTIzIDMuMjc0LTQuNjgxIDQuOTE0LS4wODguMDkzLS4xNjkuMTkyLS4zMDcuMzUxSDg1Ljd2My4xaC05LjljLS4wMS0uMTUtLjAyNi0uMjkxLS4wMjYtLjQzMiAwLS43MzIuMDIyLTEuNDY1LS4wMS0yLjJhMS4yNDEgMS4yNDEgMCAwMS40LS45ODNjMS41MjYtMS42IDMuMDM2LTMuMjA5IDQuNTUxLTQuODE3LjA4LS4wODUuMTU1LS4xNzUuMjc5LS4zMTdoLTUuMDUzeiIgZmlsbD0iIzAwOGQ3MSIvPjxwYXRoIGRhdGEtbmFtZT0iUGF0aCAyNjk4IiBkPSJNMTQuNDg1IDE3LjYyNlY1LjgwNWgzLjU2N3YxMS44MjF6IiBmaWxsPSIjMGQxMTM2Ii8+PHBhdGggZGF0YS1uYW1lPSJQYXRoIDI2OTkiIGQ9Ik0xOC4zODYgMi4xMzhhMi4xIDIuMSAwIDAxLTIuMTQ4IDIuMSAyLjEzOSAyLjEzOSAwIDAxLTIuMDc4LTIuMTRBMi4xNDEgMi4xNDEgMCAwMTE2LjI4Ni4wMDVhMi4wODIgMi4wODIgMCAwMTIuMSAyLjEzM3oiIGZpbGw9IiMwMDhkNzEiLz48L2c+PC9zdmc+"
+                    alt="pickbazar-admin"></a>
+
+            <li class="nav-item dropdown" style="list-style: none;">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" style="color:#009e7f"
+                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 18 18">
+                        <g data-name="Layer 2">
+                            <g data-name="Layer 3">
+                                <path data-name="Path 16"
+                                    d="M10.235 3.966a2.943 2.943 0 00-1.38-2.122c-.528-.243-.485-.618-.338-.854s.41-.231.832.164a5 5 0 011.368 2.87z"
+                                    fill="currentColor" stroke="currentColor" stroke-miterlimit="10"
+                                    stroke-width=".416"></path>
+                                <path data-name="Path 17"
+                                    d="M6.514 7.976a4.757 4.757 0 109.513 0c0-2.627-1.5-4.976-4.757-4.73-2.619.197-4.767 1.656-4.756 4.73z"
+                                    fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.387"></path>
+                                <path data-name="Path 18"
+                                    d="M6.514 7.976a4.757 4.757 0 109.513 0c0-2.627-1.5-4.976-4.757-4.73-2.619.197-4.767 1.656-4.756 4.73z"
+                                    fill="currentColor"></path>
+                                <path data-name="Path 19"
+                                    d="M14.731 5.045s1.506 1.544.714 2.993c-.287.526-1.2.192-1.234-.485s.25-1.27-.236-2.05c-.349-.566.26-.878.756-.458z"
+                                    fill="#fff"></path>
+                                <path data-name="Path 20"
+                                    d="M10.834 3.413s1.161-4.315 6.469-2.048c0 0-2.459 4.074-6.469 2.048z"
+                                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.387"></path>
+                                <path data-name="Path 21"
+                                    d="M10.834 3.413s1.161-4.315 6.469-2.048c0 0-2.459 4.074-6.469 2.048z" fill="#fff">
+                                </path>
+                                <path data-name="Path 22"
+                                    d="M10.516 4.513a10.193 10.193 0 015.63-2.863c-2.736-.521-6.018 1.748-6.018 1.748s.289.864.388 1.115z"
+                                    fill="currentColor" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width=".035"></path>
+                                <path data-name="Path 23"
+                                    d="M10.895 9.896h0c-.268-.877-1.969-1.65-4.234-1.72a5.286 5.286 0 00-4.515 1.858 2 2 0 00-.551 1.308h0a4.934 4.934 0 004.768 4.426c3.133.223 3.786-.96 4.225-1.9a6.363 6.363 0 00.307-3.972z"
+                                    fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="3.19"></path>
+                                <path data-name="Path 24"
+                                    d="M10.895 9.896h0c-.268-.877-1.969-1.65-4.234-1.72a5.286 5.286 0 00-4.515 1.858 2 2 0 00-.551 1.308h0a4.934 4.934 0 004.768 4.426c3.133.223 3.786-.96 4.225-1.9a6.363 6.363 0 00.307-3.972z"
+                                    fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.387"></path>
+                                <path data-name="Path 25"
+                                    d="M10.895 9.896h0c-.268-.877-1.969-1.65-4.234-1.72a5.286 5.286 0 00-4.515 1.858 2 2 0 00-.551 1.308h0a4.934 4.934 0 004.768 4.426c3.133.223 3.786-.96 4.225-1.9a6.363 6.363 0 00.307-3.972z"
+                                    fill="#fff" stroke="currentColor" stroke-miterlimit="10" stroke-width=".069">
+                                </path>
+                                <path data-name="Path 26"
+                                    d="M10.895 9.896c-.268-.877-1.969-1.65-4.234-1.72a5.286 5.286 0 00-4.515 1.858 2 2 0 00-.551 1.308 4.934 4.934 0 004.768 4.426c3.133.223 3.786-.96 4.225-1.9a6.363 6.363 0 00.307-3.972z"
+                                    fill="currentColor"></path>
+                                <path data-name="Path 27"
+                                    d="M1.595 11.342a4.375 4.375 0 00.128.684 2.664 2.664 0 00.3.335c1.067 1.028 4.409 1.723 7.173 1 .883-.23 1.522-1.3.526-1.851-.139-.076-.243-.184-.208-.277s.089-.106.269-.1a1.2 1.2 0 001.232-.735 4.126 4.126 0 00-.121-.509c-.272-.876-1.974-1.644-4.239-1.715a5.286 5.286 0 00-4.515 1.858 2.024 2.024 0 00-.545 1.31z"
+                                    fill="#fff"></path>
+                                <path data-name="Path 28"
+                                    d="M1.921 9.984a1.569 1.569 0 00.1 2.377c1.066 1.028 4.409 1.723 7.173 1 .883-.23 1.522-1.3.526-1.851-.139-.076-.243-.184-.208-.277s.089-.106.269-.1a1.183 1.183 0 001.259-.823 1.321 1.321 0 00-.785-1.413"
+                                    fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width=".416"></path>
+                                <path data-name="Path 29"
+                                    d="M8.013 10.78c-.018.471-.87.791-1.9.752s-1.856-.423-1.837-.9.87-.963 1.9-.924 1.855.605 1.837 1.072z"
+                                    fill="currentColor" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width=".555"></path>
+                                <path data-name="Path 30"
+                                    d="M9.722 12.123a2.411 2.411 0 01.467 2.08 2.759 2.759 0 01-1.5 2.427" fill="none"
+                                    stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width=".555">
+                                </path>
+                            </g>
+                        </g>
+                    </svg>Grocery
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+
+        </nav>
+        <div class="w-25 d-flex align-items-center justify-content-around">
+            <button type="button" class="offer-button btn"><b>Offer</b></button>
+            <div class="button-need"><button type="button" style="white-space: nowrap;"
+                    class="need-help-button btn"><svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px"
+                        viewBox="0 0 14 14">
+                        <path id="Path_111" data-name="Path 111"
+                            d="M269.443,404.312a7,7,0,1,0,7,7,6.98,6.98,0,0,0-7-7Zm.635,10.818a.3.3,0,0,1-.319.319h-.635a.3.3,0,0,1-.319-.319v-.635a.3.3,0,0,1,.319-.319h.635a.3.3,0,0,1,.319.319Zm.859-2.832c-.446.382-.763.637-.859.987a.308.308,0,0,1-.319.255h-.635a.309.309,0,0,1-.319-.35,2.988,2.988,0,0,1,1.336-1.876c.574-.446.892-.732.892-1.274a1.591,1.591,0,1,0-3.182,0v.191a.3.3,0,0,1-.224.351l-.6.189a.318.318,0,0,1-.414-.253,2.363,2.363,0,0,1-.033-.479,2.864,2.864,0,0,1,5.729,0,2.792,2.792,0,0,1-1.369,2.259Zm0,0"
+                            transform="translate(-262.442 -404.312)" fill="currentColor"></path>
+                    </svg><b>Need Help</b></button></div>
+            <div><button type="button" class="btn btn-light" style="color:#009e7f ;">English</button></div>
+            <button type="button" class="btn btn-primary" style="background-color:#009e7f ;" data-toggle="modal"
+                data-target=".bd-example-modal-sm">Join</button>
+        </div>
+    </header>
+
+    <div class="back justify-content-center align-items-center">
+        <section class="sec-1 d-flex flex-column text-align-center justify-content-center align-items-center">
+            <div>
+                <h1 class="h1-tag" style="font-size: 50px;"><b>Groceries Delivered in 90 Minute</b></h1>
+            </div>
+            <div>
+                <p id="p-1" style="color:#7b91c6 ;">Get your healthy foods & snacks delivered at your doorsteps all day
+                    everyday
+                </p>
+            </div>
+            <div class="search-box">
+
+                <form class="search-mech form-inline d-flex">
+                    <div class="bg-white  border-right-0 border "><span
+                            class="SearchBoxstyle__CurrentType-sc-1nej5as-1 fJToMw ">Grocery</span></div>
+                    <input class="search-input form-control mr-sm-2 border-left-0 rounded-0" type="search"
+                        placeholder="Search your products from here" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0"
+                        style="background-color: #009e7f; color: white; font-size: 18px;" type="submit"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="13px" height="13px" viewBox="0 0 14 14">
+                            <path
+                                d="M14.771,12.752,11.32,9.286a5.519,5.519,0,0,0,1.374-3.634A5.763,5.763,0,0,0,6.839,0,5.763,5.763,0,0,0,.984,5.652,5.763,5.763,0,0,0,6.839,11.3a5.936,5.936,0,0,0,3.354-1.023l3.477,3.492a.783.783,0,0,0,1.08.02A.72.72,0,0,0,14.771,12.752ZM6.839,1.475a4.259,4.259,0,0,1,4.327,4.178A4.259,4.259,0,0,1,6.839,9.83,4.259,4.259,0,0,1,2.511,5.652,4.259,4.259,0,0,1,6.839,1.475Z"
+                                transform="translate(-0.984)" fill="currentColor"></path>
+                        </svg>Search</button>
+                </form>
+            </div>
+            <div class="backet">
+                <div class="item-sum">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12.686" height="16" viewBox="0 0 12.686 16">
+                        <g data-name="Group 2704" transform="translate(-27.023 -2)">
+                            <g data-name="Group 17" transform="translate(27.023 5.156)">
+                                <g data-name="Group 16">
+                                    <path data-name="Path 3"
+                                        d="M65.7,111.043l-.714-9A1.125,1.125,0,0,0,63.871,101H62.459V103.1a.469.469,0,1,1-.937,0V101H57.211V103.1a.469.469,0,1,1-.937,0V101H54.862a1.125,1.125,0,0,0-1.117,1.033l-.715,9.006a2.605,2.605,0,0,0,2.6,2.8H63.1a2.605,2.605,0,0,0,2.6-2.806Zm-4.224-4.585-2.424,2.424a.468.468,0,0,1-.663,0l-1.136-1.136a.469.469,0,0,1,.663-.663l.8.8,2.092-2.092a.469.469,0,1,1,.663.663Z"
+                                        transform="translate(-53.023 -101.005)" fill="currentColor"></path>
+                                </g>
+                            </g>
+                            <g data-name="Group 19" transform="translate(30.274 2)">
+                                <g data-name="Group 18">
+                                    <path data-name="Path 4"
+                                        d="M160.132,0a3.1,3.1,0,0,0-3.093,3.093v.063h.937V3.093a2.155,2.155,0,1,1,4.311,0v.063h.937V3.093A3.1,3.1,0,0,0,160.132,0Z"
+                                        transform="translate(-157.039)" fill="currentColor"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                    <p><span class="item-count">0 </span>Item</p>
+                </div>
+                <div class="price-sum">
+                    <div
+                        style=" border: 1px solid white;border-radius: 6px;background-color: white;font-size: 15px;color: #009e7f;font-weight: bold;">
+                        <span>$</span><span class="price-sums">0.00</span></div>
+                </div>
+            </div>
+            <div class="backet-items">
+                <div class="items-count d-flex justify-content-between border-bottom mt-4 ml-4 mr-4">
+                    <p style="color: #009e7f;"><svg xmlns="http://www.w3.org/2000/svg" width="19px" height="24px"
+                            viewBox="0 0 23.786 30">
+                            <g data-name="shopping-bag (3)" transform="translate(-53.023)">
+                                <g data-name="Group 2704">
+                                    <g data-name="Group 17" transform="translate(53.023 5.918)">
+                                        <g data-name="Group 16">
+                                            <path data-name="Path 3"
+                                                d="M76.8,119.826l-1.34-16.881A2.109,2.109,0,0,0,73.362,101H70.716v3.921a.879.879,0,1,1-1.757,0V101H60.875v3.921a.879.879,0,1,1-1.757,0V101H56.472a2.109,2.109,0,0,0-2.094,1.937l-1.34,16.886a4.885,4.885,0,0,0,4.87,5.259H71.926a4.884,4.884,0,0,0,4.87-5.261Zm-7.92-8.6-4.544,4.544a.878.878,0,0,1-1.243,0l-2.13-2.13A.878.878,0,0,1,62.2,112.4l1.509,1.508,3.923-3.923a.879.879,0,1,1,1.242,1.243Z"
+                                                transform="translate(-53.023 -101.005)" fill="currentColor"></path>
+                                        </g>
+                                    </g>
+                                    <g data-name="Group 19" transform="translate(59.118)">
+                                        <g data-name="Group 18">
+                                            <path data-name="Path 4"
+                                                d="M162.838,0a5.806,5.806,0,0,0-5.8,5.8v.119H158.8V5.8a4.042,4.042,0,1,1,8.083,0v.119h1.757V5.8A5.806,5.806,0,0,0,162.838,0Z"
+                                                transform="translate(-157.039)" fill="currentColor"></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg> <span class="item-count">0 </span> Item</p>
+                    <div class="svg"><svg xmlns="http://www.w3.org/2000/svg" width="10.003" height="10"
+                            viewBox="0 0 10.003 10">
+                            <path data-name="_ionicons_svg_ios-close (5)"
+                                d="M166.686,165.55l3.573-3.573a.837.837,0,0,0-1.184-1.184l-3.573,3.573-3.573-3.573a.837.837,0,1,0-1.184,1.184l3.573,3.573-3.573,3.573a.837.837,0,0,0,1.184,1.184l3.573-3.573,3.573,3.573a.837.837,0,0,0,1.184-1.184Z"
+                                transform="translate(-160.5 -160.55)" fill="currentColor"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="items-products mx-auto d-flex flex-column justify-content-between h-75 align-items-center">
+                    <div style="overflow-y: auto;">
+                        <p class="" id="nop"
+                            style="padding-top: 20px; font-weight: bold; font-size: 15px;opacity: 0.7;">No products
+                            found</p>
+                        <div id="card_products"></div>
+                    </div>
+                    <div class="mt-5" style="width: 100%;"><a
+                            style="font-weight: bold; margin-left: 130px;margin-bottom: 15px;text-decoration: none; color: #009e7f;"
+                            href="">Have a special code?<br></a>
+                        <button
+                            class="btn btn-lg btn-block d-flex justify-content-between align-items-center w-100 mt-5"
+                            style="margin-bottom:-80px; background-color: #009e7f; border-radius: 15px;height: 40px;"><a
+                                style="color: white; text-decoration: none;" href="">Check
+                                out</a><span class=""
+                                style=" margin-left: 20px; padding:5px 15px; font-size:15px; border:1px solid white; border-radius: 15px;background-color: white;"><span
+                                    style="font-weight: bold;color: #009e7f;">$</span><span
+                                    class="price-sums">0.00</span></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="container ">
+        <div class="row slider demo justify-content-between d-flex mt-4" style="flex-wrap: nowrap;">
+            <div class="col-xl-3 col-sm-6">
+                <img style="width: 350px;height: 170px;" src="karusel1.png">
+            </div>
+            <div class="col-xl-3 col-sm-6 ">
+                <img style="width: 350px;height: 170px;" src="karusel2.png">
+            </div>
+            <div class="col-xl-3 col-sm-6  ">
+                <img style="width: 350px;height: 170px;" src="karusel3.png">
+            </div>
+            <div class="col-xl-3 col-sm-6">
+                <img style="width: 350px;height: 170px;" src="karusel1.png">
+            </div>
+            <div class="col-xl-3 col-sm-6 ">
+                <img style="width: 350px;height: 170px;" src="karusel2.png">
+            </div>
+            <div class="col-xl-3 col-sm-6  ">
+                <img style="width: 350px;height: 170px;" src="karusel3.png">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row mt-4">
+            <div class="col-3 d-flex">
+                <div style="border-style: none !important;"
+                    class="parent-of-left-menu nav flex-column nav-pills border bg-light mt-3" id="v-pills-tab "
+                    role="tablist" aria-orientation="vertical">
+
+                </div>
+            </div>
+            <button type="button" style="display:none;" class="btn card-modal-btn"
+                                    data-toggle="modal" data-target="#banana">Modal</button>
+            <div class="col-9">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                        aria-labelledby="v-pills-home-tab">
+                        <div class="Container-filuid">
+                            <div class="row parent_of_all_cards" style="background-color: #f7f7f7;">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                        aria-labelledby="v-pills-profile-tab">
+                        <div class="Container-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <form action="" id="form-id-1" class="justify-content-center align-items-center d-flex">
+                <div class="login_modal modal-content text-align-center align-items-center p-3">
+                    <h3 style="color: #009e7f;"><b>Welcome Back</b></h3>
+                    <p style="font-size: 15px; opacity: 0.7;">Login with your email & password</p>
+                    <div class="inputs col-sm-10">
+                        <small id="non_field_errors"></small>
+                        <input type="text" name="username" class="form-control" id="username" placeholder="Username">
+                    </div>
+                    <div class="inputs col-sm-10">
+                        <input type="password" name="password" class="form-control" id="inputPassword3"
+                            placeholder="demo">
+                        <small></small>
+                    </div>
+                    <input type="submit" value="Continue" class="mod_btns">
+                    <p>or</p>
+                    <button type="button" class="mod_btns btn btn-primary btn-sm  mb-2"></a><b>Continue with
+                            Facebook</b></button>
+                    <button type="button" class="mod_btns btn btn-primary btn-sm "><b>Continue with Google</b></button>
+                    <p>Don't have any account?<a class="modal_sign_up_btn" href=""
+                            style="color: #009e7f;font-weight: bold;">Sign Up</a></p>
+                    <p style="color: #009e7f;">Forgot your password?<a href=""
+                            style="font-weight: bold;color: #009e7f;">Reset it</a></p>
+
+                </div>
+            </form>
+            <form id="form-id-2" class="d-none">
+                <div class="login_modal modal-content text-align-center align-items-center p-3">
+                    <h3 style="color: #009e7f;"><b>Sign Up</b></h3>
+                    <p style="font-size: 15px; opacity: 0.7;">By signing up, you agree to Pickbazar's</p>
+                    <div class="inputs col-sm-10">
+                        <input type="text" name="username" class="form-control" id="username" placeholder="username">
+                        <small></small>
+                    </div>
+                    <div class="inputs col-sm-10">
+                        <input type="email" name="email" class="form-control" id="email" placeholder="demo@demo.com">
+                        <small></small>
+                    </div>
+                    <div class="inputs col-sm-10">
+                        <input type="password" name="password" class="form-control" id="password"
+                            placeholder="Password">
+                        <small></small>
+                    </div>
+                    <div class="inputs col-sm-10">
+                        <input type="text" name="first_name" class="form-control" id="first_name"
+                            placeholder="First Name">
+                        <small></small>
+                    </div>
+                    <div class="inputs col-sm-10">
+                        <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Last Name">
+                        <small></small>
+                    </div>
+                    <input type="submit" value="Continue" class="mod_btns">
+                    <p>or</p>
+                    <button type="button" class="mod_btns btn btn-primary btn-sm  mb-2"></a><b>Continue with
+                            Facebook</b></button>
+                    <button type="button" class="mod_btns btn btn-primary btn-sm "><b>Continue with Google</b></button>
+                    <p>Already have an account? <a href="" class="modal_login_btn"
+                            style="color: #009e7f; font-weight: bold;">Login</a></p>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+
+    <script src="slick/slick.js"></script>
+
+
+
+    <script src="script.js"></script>
+
+    <script>
+        document.querySelector('.backet').addEventListener('click', function () {
+            document.querySelector('.backet-items').classList.toggle('show');
+        })
+    </script>
+    <script>
+        document.querySelector('.svg').addEventListener('click', function () {
+            document.querySelector('.backet-items').classList.toggle('show');
+        })
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <script>
+        var buttons = document.getElementsByClassName('add_to_cart');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener('click', function () {
+
+            });
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.demo').slick({
+                infinite: true,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                dots: false,
+                arrows: true,
+                prevArrow: '<button type="button" data-role="none" class="slick-prev"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20"><path d="M217.9 256L345 129c9.4-9.4 9.4-24.6 0-33.9-9.4-9.4-24.6-9.3-34 0L167 239c-9.1 9.1-9.3 23.7-.7 33.1L310.9 417c4.7 4.7 10.9 7 17 7s12.3-2.3 17-7c9.4-9.4 9.4-24.6 0-33.9L217.9 256z" fill="currentColor" stroke="currentColor"></path></svg></button>',
+                nextArrow: '<button type="button" data-role="none" class="slick-next"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20"><path d="M294.1 256L167 129c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.3 34 0L345 239c9.1 9.1 9.3 23.7.7 33.1L201.1 417c-4.7 4.7-10.9 7-17 7s-12.3-2.3-17-7c-9.4-9.4-9.4-24.6 0-33.9l127-127.1z" fill="currentColor" stroke="currentColor"></path></svg></button>',
+
+            });
+        });
+    </script>
+</body>
+
+</html>

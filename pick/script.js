@@ -1,5 +1,95 @@
 const domain = 'http://35.225.243.133/'
 
+function saveStorage(product_id) {
+    let parent = document.querySelectorAll(`[product_id="${product_id}"]`);
+    // let product_id = parent[1].getAttribute('product_id');
+    let count_of_products = parseInt(parent[0].querySelector('.products-count').textContent);
+    var saveData = {
+        "prd_id": product_id,
+        "prd_count": count_of_products,
+    }
+    if (data.length != 0) {
+        let find_product = false;
+        for (let i = 0; i < data.length; i++) {
+            if (data[i]['prd_id'] === saveData['prd_id']) {
+                data[i]['prd_count'] = saveData['prd_count'];
+                localStorage.setItem('product_array', JSON.stringify(data));
+                find_product = true;
+                break;
+            }
+        }
+        if (!find_product) {
+            data.push(saveData);
+            localStorage.setItem('product_array', JSON.stringify(data));
+        }
+    } else {
+        data.push(saveData);
+        localStorage.setItem('product_array', JSON.stringify(data));
+    }
+}
+
+function addItem(product_id, prices_num) {
+    let parent = document.querySelectorAll(`[product_id="${product_id}"]`);
+    all_sum_plus = parseInt(document.querySelector('.price-sums').textContent);
+    all_sum_plus = parseInt(all_sum_plus) + parseInt(prices_num);
+    let counter = parseInt(parent[0].querySelector('.products-count').innerText);
+    counter++;
+    parent.forEach((element) => {
+        element.querySelectorAll('.products-count').forEach((element) => {
+            element.innerHTML = counter;
+        })
+    })
+
+    parent[0].querySelector('.prd-unit').innerHTML = counter;
+    prod_sum = counter * prices_num;
+    prod_sum = prod_sum.toFixed(2);
+    parent[0].querySelector('.sum').innerHTML = prod_sum;
+    document.querySelectorAll('.price-sums').forEach(element =>
+        element.innerHTML = all_sum_plus);
+    saveStorage(product_id);
+}
+function removeItem(product_id) {
+    let parent = document.querySelectorAll(`[product_id="${product_id}"]`);
+    let minus_sum = parent[0].querySelector('.sum').textContent;
+    parent[0].remove();
+
+    let summary = document.querySelector('.price-sums').textContent;
+    summary = parseInt(summary) - parseInt(minus_sum);
+    document.querySelectorAll('.price-sums').forEach(element =>
+        element.innerText = summary);
+    leng = document.querySelector('#card_products').children.length;
+    document.querySelectorAll('.item-count').forEach(element =>
+        element.innerHTML = leng);
+        
+}
+
+function minusItem(product_id, prices_num) {
+    let parent = document.querySelectorAll(`[product_id="${product_id}"]`);
+    all_sum_plus = parseInt(document.querySelector('.price-sums').textContent);
+    all_sum_plus = parseInt(all_sum_plus) - parseInt(prices_num);
+    counter = parseInt(parent[0].querySelector('.products-count').textContent);
+    
+    counter--;
+    if (counter == 0) {
+        removeItem(product_id);
+    }
+    parent.forEach((element) => {
+        element.querySelectorAll('.products-count').forEach((element) => {
+            element.innerHTML = counter;
+        })
+    })
+    parent[0].querySelector('.products-count').innerHTML = counter;
+    parent[0].querySelector('.prd-unit').innerHTML = counter;
+    prod_sum = counter * prices_num;
+    prod_sum = prod_sum.toFixed(2);
+    parent[0].querySelector('.sum').innerHTML = prod_sum;
+    document.querySelectorAll('.price-sums').forEach(element =>
+        element.innerHTML = all_sum_plus);
+    saveStorage(product_id);
+}
+
+
+
 $(document).ready(function () {
     $.ajax({
         url: 'http://35.225.243.133/api/categories/',
@@ -124,7 +214,7 @@ $(document).ready(function () {
         let product_div = document.createElement('div');
         product_div.setAttribute('product_id', product.id);
         product_div.classList.add('card');
-        product_div.setAttribute('card_title', product.title);
+        // product_div.setAttribute('card_title', product.title);
         card_of_product.appendChild(product_div);
         let product_img = document.createElement('img');
         product_img.classList.add('cards_imgs');
@@ -263,13 +353,13 @@ document.querySelector('.modal_login_btn').addEventListener('click', function (e
     document.querySelector('.login_modal').classList.remove('d-none');
 })
 
-function creatingBacketProduct(product_name,counter,card_image,prices_num,product_unit,sum) {
+function creatingBacketProduct(product_name, product_id, counter,card_image, prices_num, product_unit, sum) {
     let card_products = document.querySelector('#card_products');
     let card_div_1 = document.createElement('div');
     card_products.appendChild(card_div_1);
     card_div_1.classList.add('card_div_1', 'card');
-    card_div_1.setAttribute('card_title', product_name);
-    card_div_1.setAttribute('card_title1', product_name);
+    card_div_1.setAttribute('product_id', product_id);
+    // card_div_1.setAttribute('card_title1', product_name);
     let card_div_2 = document.createElement('div');
     card_div_2.classList.add('card_div_2', 'row', 'no-glutters');
     card_div_1.appendChild(card_div_2);
@@ -352,70 +442,12 @@ function creatingBacketProduct(product_name,counter,card_image,prices_num,produc
     last_span.innerHTML = '<svg style="color:#bfbfbf" xmlns="http://www.w3.org/2000/svg" width="10.003" height="10" viewBox="0 0 10.003 10"><path data-name="_ionicons_svg_ios-close (5)" d="M166.686,165.55l3.573-3.573a.837.837,0,0,0-1.184-1.184l-3.573,3.573-3.573-3.573a.837.837,0,1,0-1.184,1.184l3.573,3.573-3.573,3.573a.837.837,0,0,0,1.184,1.184l3.573-3.573,3.573,3.573a.837.837,0,0,0,1.184-1.184Z" transform="translate(-160.5 -160.55)" fill="currentColor"></path></svg>';
     end_div_div_p.appendChild(last_span);
 
-    function addItem() {
-        let parent = document.querySelectorAll(`[card_title="${product_name}"]`);
-        all_sum_plus = parseInt(document.querySelector('.price-sums').textContent);
-        all_sum_plus = parseInt(all_sum_plus) + parseInt(prices_num);
-        counter++;
-        parent.forEach((element) => {
-            element.querySelectorAll('.products-count').forEach((element) => {
-                element.innerHTML = counter;
-            })
-        })
 
-        card_div_1.querySelector('.prd-unit').innerHTML = counter;
-        prod_sum = counter * prices_num;
-        prod_sum = prod_sum.toFixed(2);
-        card_div_1.querySelector('.sum').innerHTML = prod_sum;
-        document.querySelectorAll('.price-sums').forEach(element =>
-            element.innerHTML = all_sum_plus);
-        saveStorage();
-    }
-    function removeItem() {
-        let parent = document.querySelectorAll(`[card_title="${product_name}"]`);
-        let minus_sum = parent[0].querySelector('.sum').textContent;
-        parent[0].remove();
-
-        let summary = document.querySelector('.price-sums').textContent;
-        summary = parseInt(summary) - parseInt(minus_sum);
-        document.querySelectorAll('.price-sums').forEach(element =>
-            element.innerText = summary);
-        leng = document.querySelector('#card_products').children.length;
-        document.querySelectorAll('.item-count').forEach(element =>
-            element.innerHTML = leng);
-            
-    }
-
-    function minusItem() {
-        let parent = document.querySelectorAll(`[card_title="${product_name}"]`);
-        all_sum_plus = parseInt(document.querySelector('.price-sums').textContent);
-        all_sum_plus = parseInt(all_sum_plus) - parseInt(prices_num);
-        counter = parseInt(parent[0].querySelector('.products-count').textContent);
-        counter--;
-        if (counter == 0) {
-            removeItem();
-        }
-        parent.forEach((element) => {
-            element.querySelectorAll('.products-count').forEach((element) => {
-                element.innerHTML = counter;
-            })
-        })
-        card_div_1.querySelector('.products-count').innerHTML = counter;
-        card_div_1.querySelector('.prd-unit').innerHTML = counter;
-        prod_sum = counter * prices_num;
-        prod_sum = prod_sum.toFixed(2);
-        card_div_1.querySelector('.sum').innerHTML = prod_sum;
-        document.querySelectorAll('.price-sums').forEach(element =>
-            element.innerHTML = all_sum_plus);
-        
-
-
-    }
     div_4_child_2.addEventListener('click', function(){
-        addItem();
+        addItem(product_id, prices_num, counter, card_div_1);
     })
     div_4_child_4.addEventListener('click', function(){
-        minusItem();
+        minusItem(product_id, prices_num, counter, card_div_1);
     })
 }
 
@@ -431,7 +463,7 @@ if (localStorage.getItem('product_array')) {
             method: 'GET',
             success: function (response) {
                 let sum = parseInt(response.price)*parseInt(every_product.prd_count);
-                creatingBacketProduct(response.title,every_product.prd_count,response.main_image,response.price,response.amount_by_unit,sum);
+                creatingBacketProduct(response.title, response.id, every_product.prd_count, response.main_image, response.price, response.amount_by_unit, sum);
             }
         })
     }
@@ -465,6 +497,7 @@ function addOnClick(e, x) {
         var prices_num = parseInt(product_price);
 
         var product_name = all_parent.querySelector('.name_span').textContent;
+        var product_id = card_parent.getAttribute('product_id');
         var product_unit = all_parent.querySelector('.unit_count_span').textContent;
         var counter = 1;
         var sum = 1 * prices_num;
@@ -480,8 +513,8 @@ function addOnClick(e, x) {
 
             card_products.appendChild(card_div_1);
             card_div_1.classList.add('card_div_1', 'card');
-            card_div_1.setAttribute('card_title', product_name);
-            card_div_1.setAttribute('card_title1', product_name);
+            card_div_1.setAttribute('product_id', product_id);
+            // card_div_1.setAttribute('card_title1', product_name);
             let card_div_2 = document.createElement('div');
             card_div_2.classList.add('card_div_2', 'row', 'no-glutters');
             card_div_1.appendChild(card_div_2);
@@ -501,7 +534,7 @@ function addOnClick(e, x) {
             div_4_child_2.innerText = "+";
             let div_4_child_3 = document.createElement('span');
             div_4_child_3.classList.add('products-count');
-            div_4_child_3.innerText = `${counter}`;
+            div_4_child_3.innerText = `1`;
             let div_4_child_4 = document.createElement('span');
             div_4_child_4.classList.add('minus-btn');
             div_4_child_4.innerText = "-";
@@ -532,7 +565,7 @@ function addOnClick(e, x) {
             // center_div_p2.innerText = `X ${product_unit}`;
             let center_div_p2_span = document.createElement('span');
             center_div_p2_span.classList.add('prd-unit');
-            center_div_p2_span.innerText = counter;
+            center_div_p2_span.innerText = "1";
             center_div_p2.appendChild(center_div_p2_span);
             let center_div_p2_span2 = document.createElement('span');
             center_div_p2_span2.classList.add("center_div_p2_span2");
@@ -563,46 +596,46 @@ function addOnClick(e, x) {
             last_span.classList.add('product-x');
             last_span.innerHTML = '<svg style="color:#bfbfbf" xmlns="http://www.w3.org/2000/svg" width="10.003" height="10" viewBox="0 0 10.003 10"><path data-name="_ionicons_svg_ios-close (5)" d="M166.686,165.55l3.573-3.573a.837.837,0,0,0-1.184-1.184l-3.573,3.573-3.573-3.573a.837.837,0,1,0-1.184,1.184l3.573,3.573-3.573,3.573a.837.837,0,0,0,1.184,1.184l3.573-3.573,3.573,3.573a.837.837,0,0,0,1.184-1.184Z" transform="translate(-160.5 -160.55)" fill="currentColor"></path></svg>';
             end_div_div_p.appendChild(last_span);
-            saveStorage();
+            saveStorage(product_id);
 
             last_span.addEventListener('click', function (event) {
-                removeItem();
+                removeItem(product_id);
             })
 
-            function removeItem() {
-                let parent = document.querySelectorAll(`[card_title="${product_name}"]`);
-                let minus_sum = parent[0].querySelector('.sum').textContent;
-                parent[0].remove();
+            // function removeItem() {
+            //     let parent = document.querySelectorAll(`[card_title="${product_name}"]`);
+            //     let minus_sum = parent[0].querySelector('.sum').textContent;
+            //     parent[0].remove();
 
-                let summary = document.querySelector('.price-sums').textContent;
-                summary = parseInt(summary) - parseInt(minus_sum);
-                document.querySelectorAll('.price-sums').forEach(element =>
-                    element.innerText = summary);
-                leng = document.querySelector('#card_products').children.length;
-                document.querySelectorAll('.item-count').forEach(element =>
-                    element.innerHTML = leng);
-                    saveStorage();
-            }
+            //     let summary = document.querySelector('.price-sums').textContent;
+            //     summary = parseInt(summary) - parseInt(minus_sum);
+            //     document.querySelectorAll('.price-sums').forEach(element =>
+            //         element.innerText = summary);
+            //     leng = document.querySelector('#card_products').children.length;
+            //     document.querySelectorAll('.item-count').forEach(element =>
+            //         element.innerHTML = leng);
+            //         saveStorage();
+            // }
 
-            function addItem(x) {
-                let parent = document.querySelectorAll(`[card_title="${product_name}"]`);
-                all_sum_plus = parseInt(document.querySelector('.price-sums').textContent);
-                all_sum_plus = parseInt(all_sum_plus) + parseInt(prices_num);
-                counter++;
-                parent.forEach((element) => {
-                    element.querySelectorAll('.products-count').forEach((element) => {
-                        element.innerHTML = counter;
-                    })
-                })
+            // function addItem(x) {
+            //     let parent = document.querySelectorAll(`[card_title="${product_name}"]`);
+            //     all_sum_plus = parseInt(document.querySelector('.price-sums').textContent);
+            //     all_sum_plus = parseInt(all_sum_plus) + parseInt(prices_num);
+            //     counter++;
+            //     parent.forEach((element) => {
+            //         element.querySelectorAll('.products-count').forEach((element) => {
+            //             element.innerHTML = counter;
+            //         })
+            //     })
 
-                card_div_1.querySelector('.prd-unit').innerHTML = counter;
-                prod_sum = counter * prices_num;
-                prod_sum = prod_sum.toFixed(2);
-                card_div_1.querySelector('.sum').innerHTML = prod_sum;
-                document.querySelectorAll('.price-sums').forEach(element =>
-                    element.innerHTML = all_sum_plus);
-                saveStorage();
-            }
+            //     card_div_1.querySelector('.prd-unit').innerHTML = counter;
+            //     prod_sum = counter * prices_num;
+            //     prod_sum = prod_sum.toFixed(2);
+            //     card_div_1.querySelector('.sum').innerHTML = prod_sum;
+            //     document.querySelectorAll('.price-sums').forEach(element =>
+            //         element.innerHTML = all_sum_plus);
+            //     saveStorage();
+            // }
 
 
             let prod_sum = 1 * parseInt(prices_num);
@@ -610,70 +643,41 @@ function addOnClick(e, x) {
             all_sum_plus = all_sum_plus + prod_sum;
             all_sum_plus = parseInt(document.querySelector('.price-sums').textContent);
             div_4_child_2.addEventListener('click', function (event) {
-                addItem(this);
-
+                addItem(product_id, prices_num, counter, card_div_1);
             })
 
 
-            function minusItem(x) {
-                let parent = document.querySelectorAll(`[card_title="${product_name}"]`);
-                all_sum_plus = parseInt(document.querySelector('.price-sums').textContent);
-                all_sum_plus = parseInt(all_sum_plus) - parseInt(prices_num);
-                counter = parseInt(parent[0].querySelector('.products-count').textContent);
-                counter--;
-                if (counter == 0) {
-                    removeItem();
-                }
-                parent.forEach((element) => {
-                    element.querySelectorAll('.products-count').forEach((element) => {
-                        element.innerHTML = counter;
-                    })
-                })
-                card_div_1.querySelector('.products-count').innerHTML = counter;
-                card_div_1.querySelector('.prd-unit').innerHTML = counter;
-                prod_sum = counter * prices_num;
-                prod_sum = prod_sum.toFixed(2);
-                card_div_1.querySelector('.sum').innerHTML = prod_sum;
-                document.querySelectorAll('.price-sums').forEach(element =>
-                    element.innerHTML = all_sum_plus);
-                saveStorage();
+            // function minusItem(x) {
+            //     let parent = document.querySelectorAll(`[card_title="${product_name}"]`);
+            //     all_sum_plus = parseInt(document.querySelector('.price-sums').textContent);
+            //     all_sum_plus = parseInt(all_sum_plus) - parseInt(prices_num);
+            //     counter = parseInt(parent[0].querySelector('.products-count').textContent);
+            //     counter--;
+            //     if (counter == 0) {
+            //         removeItem();
+            //     }
+            //     parent.forEach((element) => {
+            //         element.querySelectorAll('.products-count').forEach((element) => {
+            //             element.innerHTML = counter;
+            //         })
+            //     })
+            //     card_div_1.querySelector('.products-count').innerHTML = counter;
+            //     card_div_1.querySelector('.prd-unit').innerHTML = counter;
+            //     prod_sum = counter * prices_num;
+            //     prod_sum = prod_sum.toFixed(2);
+            //     card_div_1.querySelector('.sum').innerHTML = prod_sum;
+            //     document.querySelectorAll('.price-sums').forEach(element =>
+            //         element.innerHTML = all_sum_plus);
+            //     saveStorage();
 
 
-            }
+            // }
 
-            function saveStorage() {
-                let parent = document.querySelectorAll(`[card_title="${product_name}"]`);
-                let product_id = parent[1].getAttribute('product_id');
-                let count_of_products = parseInt(parent[0].querySelector('.products-count').textContent);
-                var saveData = {
-                    "prd_name": product_name,
-                    "prd_count": count_of_products,
-                    "prd_id": product_id,
-                }
-                if (data.length != 0) {
-                    let find_product = false;
-                    for (let i = 0; i < data.length; i++) {
-                        if (data[i]['prd_id'] === saveData['prd_id']) {
-                            data[i]['prd_count'] = saveData['prd_count'];
-                            localStorage.setItem('product_array', JSON.stringify(data));
-                            find_product = true;
-                            break;
-                        }
-                    }
-                    if (!find_product) {
-                        data.push(saveData);
-                        localStorage.setItem('product_array', JSON.stringify(data));
-                    }
-                } else {
-                    data.push(saveData);
-                    localStorage.setItem('product_array', JSON.stringify(data));
-                }
-            }
             
 
 
             div_4_child_4.addEventListener('click', function (event) {
-                minusItem(this);
+                minusItem(product_id);
             })
 
             var leng = document.querySelector('#card_products').children.length;
@@ -693,12 +697,11 @@ function addOnClick(e, x) {
             parent_of_cart.classList.add('parent-of-cart', 'add_to_cart');
 
             clone_of_minus.addEventListener('click', function () {
-                minusItem(this);
+                minusItem(product_id, prices_num, counter, card_div_1);
 
             })
             clone_of_plus.addEventListener('click', function () {
-                addItem(this);
-
+                addItem(product_id, prices_num, counter, card_div_1);
             })
 
             // }

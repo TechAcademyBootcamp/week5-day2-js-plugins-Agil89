@@ -371,7 +371,20 @@ function creatingBacketProduct(product_name,counter,card_image,prices_num,produc
             element.innerHTML = all_sum_plus);
         saveStorage();
     }
+    function removeItem() {
+        let parent = document.querySelectorAll(`[card_title="${product_name}"]`);
+        let minus_sum = parent[0].querySelector('.sum').textContent;
+        parent[0].remove();
 
+        let summary = document.querySelector('.price-sums').textContent;
+        summary = parseInt(summary) - parseInt(minus_sum);
+        document.querySelectorAll('.price-sums').forEach(element =>
+            element.innerText = summary);
+        leng = document.querySelector('#card_products').children.length;
+        document.querySelectorAll('.item-count').forEach(element =>
+            element.innerHTML = leng);
+            
+    }
 
     function minusItem() {
         let parent = document.querySelectorAll(`[card_title="${product_name}"]`);
@@ -394,15 +407,15 @@ function creatingBacketProduct(product_name,counter,card_image,prices_num,produc
         card_div_1.querySelector('.sum').innerHTML = prod_sum;
         document.querySelectorAll('.price-sums').forEach(element =>
             element.innerHTML = all_sum_plus);
-        saveStorage();
+        
 
 
     }
-    document.querySelector('.plus-btn').addEventListener('click', function(){
-        addItem(x);
+    div_4_child_2.addEventListener('click', function(){
+        addItem();
     })
-    document.querySelector('.minus-btn').addEventListener('click', function(){
-        minusItem(x);
+    div_4_child_4.addEventListener('click', function(){
+        minusItem();
     })
 }
 

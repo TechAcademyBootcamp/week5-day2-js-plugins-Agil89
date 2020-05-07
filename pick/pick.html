@@ -10,9 +10,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="src/jquery.fancybox.css?v=2.1.7" type="text/css" media="screen" />
-    <link rel="stylesheet" href="src/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
-    <link rel="stylesheet" href="src/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+    <link rel="stylesheet" href="src/xzoom.css">
 </head>
 
 <body>
@@ -264,16 +262,16 @@
 
                 </div>
             </div>
-            <button type="button" style="display:none;" class="btn card-modal-btn"
-                                    data-toggle="modal" data-target="#banana">Modal</button>
-                                    
+            <button type="button" style="display:none;" class="btn card-modal-btn" data-toggle="modal"
+                data-target="#banana">Modal</button>
+
             <div class="col-9">
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
                         aria-labelledby="v-pills-home-tab">
                         <div class="Container-filuid">
                             <div class="row parent_of_all_cards" style="background-color: #f7f7f7;">
-                                
+
                             </div>
                         </div>
                     </div>
@@ -362,28 +360,36 @@
                 <div class="modal-body d-flex justify-content-between">
                     <div class="row">
                         <div class="col-6 body-1 border-right d-flex flex-column w-100">
-                            <div ><img class="modal-main-img" style="width: 100%;" src="banana_thumb.png">
+                            <!-- <div class="main-img-class"> -->
+                            <img class="modal-main-img xzoom main-img-class" src="banana_thumb.png"
+                                xoriginal="path/to/original_image_01.jpg">
+                            <!-- </div> -->
+                            <div class="thumbs_div d-flex flex-row align-items-center justify-content-around">
+                                <a class="thumbs_a" style="list-style: none;"><img class="thumb_img xzoom-gallery"
+                                        style="width: 100%;" src="banana_thumb.png"></a>
+                                <a class="thumbs_a" style="list-style: none;"><img class="thumb_img xzoom-gallery"
+                                        style="width: 100%;" src="banana_thumb.png"></a>
+                                <a class="thumbs_a" style="list-style: none;"><img class="thumb_img xzoom-gallery"
+                                        style="width: 100%;" src="banana_thumb.png"></a>
+                                <a class="thumbs_a" style="list-style: none;"><img class="thumb_img xzoom-gallery"
+                                        style="width: 100%;" src="banana_thumb.png"></a>
                             </div>
-                            <ul class="d-flex flex-row align-items-center justify-content-around">
-                                <li style="max-width: 70px;list-style: none;"><img class="thumb_img fancybox" style="width: 100%;"
-                                        src="banana_thumb.png"></li>
-                                <li style="max-width: 70px;list-style: none;"><img class="thumb_img fancybox" style="width: 100%;"
-                                        src="banana_thumb.png"></li>
-                                <li style="max-width: 70px;list-style: none;"><img class="thumb_img fancybox" style="width: 100%;"
-                                        src="banana_thumb.png"></li>
-                            </ul>
                         </div>
 
                         <div class="body-2 col-6">
-                            <div class="d-flex align-items-center justify-content-start"><h3 class="mt-4 mb-4 product-title" style="font-weight: bold; padding-right: 50px;">Banana</h3>
-                                <p style="padding-top:20px;color:#009e7f; font-size:17px; font-weight:bold" class="price-place"></p></div>
+                            <div class="d-flex align-items-center justify-content-start">
+                                <h3 class="mt-4 mb-4 product-title" style="font-weight: bold; padding-right: 50px;">
+                                    Banana</h3>
+                                <p style="padding-top:20px;color:#009e7f; font-size:17px; font-weight:bold"
+                                    class="price-place"></p>
+                            </div>
                             <p style="font-size: 14px;opacity: 0.7;" class="mb-4 unit-place">8 pc(s)</p>
                             <p style="opacity: 0.8;" class="mb-4">All fructs are an edible fruit – botanically a berry –
                                 produced by several kinds of large
                                 herbaceous flowering plants in the genus Musa. In some countries, bananas used for
                                 cooking
                                 may be called plantains distinguishing them from dessert bananas.</p>
-                            <span class="btn mb-4"><b><svg xmlns="
+                            <span class="cart-in-modal btn mb-4 "><b><svg xmlns="
                             http://www.w3.org/2000/svg" width="14.4" height="12" viewBox="0 0 14.4 12">
                                         <g data-name="Group 120" transform="translate(-288 -413.89)">
                                             <path data-name="Path 154" fill="currentColor"
@@ -405,25 +411,26 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"
         integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
     <script src="slick/slick.js"></script>
 
-
-
+    <script src="src/xzoom.min.js"></script>
+    <script src="src/setup.js"></script>
     <script src="script.js"></script>
 
     <script type="text/javascript" src="src/jquery.mousewheel.pack.js"></script>
 
-    <script type="text/javascript" src="src/jquery.fancybox.pack.js?v=2.1.7"></script>
-    <script type="text/javascript" src="src/jquery.fancybox-buttons.js?v=1.0.5"></script>
-    <script type="text/javascript" src="src/jquery.fancybox-media.js?v=1.0.6"></script>
+    <script>
+        $(".xzoom, .xzoom-gallery").xzoom({
 
-    <script type="text/javascript" src="src/jquery.fancybox-thumbs.js?v=1.0.7"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $(".fancybox").fancybox();
         });
     </script>
+
     <script>
         document.querySelector('.backet').addEventListener('click', function () {
             document.querySelector('.backet-items').classList.toggle('show');
@@ -435,12 +442,7 @@
         })
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+
 
     <script>
         var buttons = document.getElementsByClassName('add_to_cart');

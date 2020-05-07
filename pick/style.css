@@ -150,14 +150,14 @@ body{
 .search-input{
     padding: 19px 0px!important;
 }
-.price-button span{
+.price-button>span{
     border-radius: 12px;
     background-color: white;
     color: #009e7f;
 }
 .price-button span:hover{
     background-color: #009e7f;
-    color: white;
+    
 }
 .backet{
     height: 100px;
@@ -451,4 +451,61 @@ body{
 }
 .slick-next::before{
     display: none;
+}
+
+.minus-btn{
+    height: 2px;
+}
+.minus-btn:hover{
+    background-color: white !important;
+}
+.price-button{
+    height: 43px;
+    
+}
+.counting_after_local{
+    width:60px;
+    height: 30px;
+    background-color: #009e7f;
+    border-radius: 75px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.plus_btn_after_local{
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+   background-color: transparent;
+   color: white;
+}
+.minus_btn_after_local{
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: transparent;
+    color: white;
+}
+.counter_after_local{
+    font-size: 18px;
+    background-color: transparent;
+    color: white;
+    
+}
+.modal-main-img{
+    width:400px;
+    height: 300px;
+}
+.main-img-class{
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.thumb_img{
+    height: 30px;
+    width: 30px;
+}
+.thumbs_div{
+    padding-right: 10px;
 }

@@ -3,7 +3,10 @@ const domain = 'http://35.225.243.133/'
 function saveStorage(product_id) {
     let parent = document.querySelectorAll(`[product_id="${product_id}"]`);
     // let product_id = parent[1].getAttribute('product_id');
-    let count_of_products = parseInt(parent[0].querySelector('.products-count').textContent);
+    let count_of_products = 0;
+    if(parent[0].querySelector('.products-count')){
+        count_of_products = parseInt(parent[0].querySelector('.products-count').textContent)
+    }
     var saveData = {
         "prd_id": product_id,
         "prd_count": count_of_products,
@@ -31,140 +34,7 @@ function saveStorage(product_id) {
         localStorage.setItem('product_array', JSON.stringify(data));
     }
 }
-// function creater() {
-//     let card_products = document.querySelector('#card_products');
-//     let card_div_1 = document.createElement('div');
 
-//     card_products.appendChild(card_div_1);
-//     card_div_1.classList.add('card_div_1', 'card');
-//     card_div_1.setAttribute('product_id', product_id);
-//     // card_div_1.setAttribute('card_title1', product_name);
-//     let card_div_2 = document.createElement('div');
-//     card_div_2.classList.add('card_div_2', 'row', 'no-glutters');
-//     card_div_1.appendChild(card_div_2);
-//     let card_div_3 = document.createElement('div');
-//     card_div_2.appendChild(card_div_3);
-//     card_div_3.classList.add('card_div_3', 'col-md-12', 'd-flex', 'w-100');
-
-
-//     // -----------------------------------
-//     let card_div_4 = document.createElement('div');
-//     card_div_3.appendChild(card_div_4);
-//     card_div_4.classList.add('card_div_4', 'col-md-8', 'd-flex', 'justify-content-around');
-//     let div_4_child = document.createElement('div');
-//     div_4_child.classList.add('counters-class');
-//     let div_4_child_2 = document.createElement('span');
-//     div_4_child_2.classList.add('plus-btn');
-//     div_4_child_2.innerText = "+";
-//     let div_4_child_3 = document.createElement('span');
-//     div_4_child_3.classList.add('products-count');
-//     div_4_child_3.innerText = `1`;
-//     let div_4_child_4 = document.createElement('span');
-//     div_4_child_4.classList.add('minus-btn');
-//     div_4_child_4.innerText = "-";
-//     card_div_4.appendChild(div_4_child);
-//     div_4_child.appendChild(div_4_child_2);
-//     div_4_child.appendChild(div_4_child_3);
-//     div_4_child.appendChild(div_4_child_4);
-//     let div_4_child_img = document.createElement('img');
-//     div_4_child_img.classList.add('card-img');
-//     div_4_child_img.setAttribute('src', card_image);
-//     card_div_4.appendChild(div_4_child_img);
-
-
-//     // ----------------------------------------------
-//     let div_center = document.createElement('div');
-//     card_div_4.appendChild(div_center);
-//     let h_6 = document.createElement('h6');
-//     h_6.classList.add('card-title');
-//     h_6.innerHTML = `${product_name}`;
-//     div_center.appendChild(h_6);
-//     let center_div_p1 = document.createElement('p');
-//     center_div_p1.classList.add('card-text');
-//     center_div_p1.innerText = `$${prices_num}`;
-//     div_center.appendChild(center_div_p1);
-//     let center_div_p2 = document.createElement('p');
-//     center_div_p2.classList.add('center_div_p2');
-//     div_center.appendChild(center_div_p2);
-//     // center_div_p2.innerText = `X ${product_unit}`;
-//     let center_div_p2_span = document.createElement('span');
-//     center_div_p2_span.classList.add('prd-unit');
-//     center_div_p2_span.innerText = "1";
-//     center_div_p2.appendChild(center_div_p2_span);
-//     let center_div_p2_span2 = document.createElement('span');
-//     center_div_p2_span2.classList.add("center_div_p2_span2");
-//     center_div_p2.appendChild(center_div_p2_span2)
-//     center_div_p2_span2.innerText = `X ${product_unit}`;
-
-
-//     // ---------------------------------
-
-//     let end_div = document.createElement('div');
-//     card_div_3.appendChild(end_div);
-//     end_div.classList.add("col-md-4", "d-flex", "align-items-center", "justify-content-center");
-//     let end_div_div = document.createElement('div');
-//     end_div.appendChild(end_div_div);
-//     end_div_div.classList.add("card-body", "d-flex", "align-items-center", "justify-content-center", "p-0");
-//     let end_div_div_p = document.createElement('p');
-//     end_div_div_p.classList.add("d-flex", "justify-content-between");
-//     end_div_div.appendChild(end_div_div_p);
-//     let end_div_div_span = document.createElement('span');
-//     end_div_div_p.appendChild(end_div_div_span);
-//     end_div_div_span.classList.add('end_div_div_span');
-//     end_div_div_span.innerText = "$";
-//     let end_div_div_span_2 = document.createElement('span');
-//     end_div_div_p.appendChild(end_div_div_span_2);
-//     end_div_div_span_2.classList.add('sum');
-//     end_div_div_span_2.innerText = `${sum}`;
-//     let last_span = document.createElement('span');
-//     last_span.classList.add('product-x');
-//     last_span.innerHTML = '<svg style="color:#bfbfbf" xmlns="http://www.w3.org/2000/svg" width="10.003" height="10" viewBox="0 0 10.003 10"><path data-name="_ionicons_svg_ios-close (5)" d="M166.686,165.55l3.573-3.573a.837.837,0,0,0-1.184-1.184l-3.573,3.573-3.573-3.573a.837.837,0,1,0-1.184,1.184l3.573,3.573-3.573,3.573a.837.837,0,0,0,1.184,1.184l3.573-3.573,3.573,3.573a.837.837,0,0,0,1.184-1.184Z" transform="translate(-160.5 -160.55)" fill="currentColor"></path></svg>';
-//     end_div_div_p.appendChild(last_span);
-//     saveStorage(product_id);
-
-//     last_span.addEventListener('click', function (event) {
-//         removeItem(product_id);
-//     })
-
-
-//     let prod_sum = 1 * parseInt(prices_num);
-//     let all_sum_plus = 0;
-//     all_sum_plus = all_sum_plus + prod_sum;
-//     all_sum_plus = parseInt(document.querySelector('.price-sums').textContent);
-//     div_4_child_2.addEventListener('click', function (event) {
-//         addItem(product_id, prices_num, counter, card_div_1);
-//     })
-
-
-//     div_4_child_4.addEventListener('click', function (event) {
-//         minusItem(product_id);
-//     })
-
-//     var leng = document.querySelector('#card_products').children.length;
-
-
-//     var clone_card_parent = card_parent.querySelector('.price')
-//     var es = Array.from(clone_card_parent.querySelectorAll('.clone_card'))
-
-
-//     cart_element.innerHTML = "";
-//     let clone_of_minus = div_4_child_4.cloneNode(true);
-//     let clone_of_plus = div_4_child_2.cloneNode(true);
-//     let clone_of_count = div_4_child_3.cloneNode(true);
-//     parent_of_cart.appendChild(clone_of_minus);
-//     parent_of_cart.appendChild(clone_of_count);
-//     parent_of_cart.appendChild(clone_of_plus);
-//     parent_of_cart.classList.add('parent-of-cart', 'add_to_cart');
-
-//     clone_of_minus.addEventListener('click', function () {
-//         minusItem(product_id, prices_num, counter, card_div_1);
-
-//     })
-//     clone_of_plus.addEventListener('click', function () {
-//         addItem(product_id, prices_num, counter, card_div_1);
-//     })
-
-// }
 function addItem(product_id, prices_num) {
     let parent = document.querySelectorAll(`[product_id="${product_id}"]`);
     all_sum_plus = parseInt(document.querySelector('.price-sums').textContent);
@@ -198,7 +68,17 @@ function removeItem(product_id) {
         element.innerHTML = leng);
 
 }
-
+function removeItemFromStorage(product_id){
+    console.log(localStorage);
+    let array = JSON.parse(localStorage.getItem('product_array'));
+    let removed_array = array.filter((element)=>{
+        if(element.prd_id!=product_id){
+            return element;
+        }
+    })
+    localStorage.setItem('product_array',JSON.stringify(removed_array));
+    console.log(localStorage);
+}
 function minusItem(product_id, prices_num) {
     let parent = document.querySelectorAll(`[product_id="${product_id}"]`);
     all_sum_plus = parseInt(document.querySelector('.price-sums').textContent);
@@ -208,7 +88,32 @@ function minusItem(product_id, prices_num) {
     counter--;
     if (counter == 0) {
         removeItem(product_id);
-
+        let parent_of_card= parent[1].querySelector('.price-button');
+        let parent_of_svg = document.createElement('span');
+        parent_of_card.innerHTML = '';
+        parent_of_card.appendChild(parent_of_svg);
+        parent_of_svg.classList.add('add_to_cart');
+        parent_of_svg.classList.add('parent_of_svg');
+        // let svg_after_count = document.createElement('');
+        // parent_of_svg.appendChild(svg_after_count);
+        // let cart_after_svg = document.createElement('span');
+        // parent_of_svg.appendChild(cart_after_svg);
+        parent_of_svg.innerHTML = `<svg xmlns="
+        http://www.w3.org/2000/svg" width="14.4" height="12"
+                    viewBox="0 0 14.4 12">
+                    <g data-name="Group 120"
+                        transform="translate(-288 -413.89)">
+                        <path data-name="Path 154" fill="currentColor"
+                            d="M298.7,418.289l-2.906-4.148a.835.835,0,0,0-.528-.251.607.607,0,0,0-.529.251l-2.905,4.148h-3.17a.609.609,0,0,0-.661.625v.191l1.651,5.84a1.336,1.336,0,0,0,1.255.945h8.588a1.261,1.261,0,0,0,1.254-.945l1.651-5.84v-.191a.609.609,0,0,0-.661-.625Zm-5.419,0,1.984-2.767,1.98,2.767Zm1.984,5.024a1.258,1.258,0,1,1,1.319-1.258,1.3,1.3,0,0,1-1.319,1.258Zm0,0">
+                        </path>
+                    </g>
+                </svg>Cart`;
+        // cart_after_svg.innerHTML = '';
+        parent_of_card.classList.remove('parent-of-cart');
+        // parent_of_svg.addEventListener('click', function(event){
+        //     addOnClick(event,parent[1]);
+        // })
+        removeItemFromStorage(product_id);
 
     }
     parent.forEach((element) => {
@@ -397,12 +302,13 @@ $(document).ready(function () {
         name_span.classList.add('name_span');
         unit_count_span.classList.add('unit_count_span');
         let price_div = document.createElement('div');
-        price_div.classList.add('price', 'd-flex', 'justify-content-between', 'align-items-center', 'mt-4', 'ml-4', 'mr-4')
+        price_div.classList.add('price', 'd-flex', 'justify-content-between', 'align-items-center', 'mt-4', 'ml-4', 'mr-4','mb-3')
         product_div.appendChild(price_div);
         let price_number_div = document.createElement('div');
         let price_button_div = document.createElement('div');
         price_number_div.classList.add('price-number');
         price_button_div.classList.add('price-button');
+        price_button_div.classList.add('price_button_div');
         price_div.appendChild(price_number_div);
         price_div.appendChild(price_button_div);
         let price_number_count = document.createElement('span');
@@ -413,11 +319,10 @@ $(document).ready(function () {
         price_number_div.appendChild(price_number_count);
         price_number_div.appendChild(price_number_symbol);
         let price_button_svg = document.createElement('span');
-        price_button_svg.classList.add('btn', 'add_to_cart');
+        price_button_svg.classList.add('add_to_cart','cart_before_click');
         let product_count_in_storage = findProductInStorage(product_id);
         if (product_count_in_storage === 0) {
             price_button_div.appendChild(price_button_svg);
-            price_button_svg.classList.add('svgsvg');
             price_button_svg.innerHTML = `<svg xmlns="
         http://www.w3.org/2000/svg" width="14.4" height="12"
                     viewBox="0 0 14.4 12">
@@ -430,6 +335,28 @@ $(document).ready(function () {
                 </svg>Cart`
 
         }
+        // let parent_of_card= parent[1].querySelector('.price-button');
+        // let parent_of_svg = document.createElement('span');
+        // parent_of_card.innerHTML = '';
+        // parent_of_card.appendChild(parent_of_svg);
+        // parent_of_svg.classList.add('add_to_cart');
+        // parent_of_svg.classList.add('parent_of_svg');
+        // let svg_after_count = document.createElement('span');
+        // parent_of_svg.appendChild(svg_after_count);
+        // let cart_after_svg = document.createElement('span');
+        // parent_of_svg.appendChild(cart_after_svg);
+        // svg_after_count.innerHTML = `<svg xmlns="
+        // http://www.w3.org/2000/svg" width="14.4" height="12"
+        //             viewBox="0 0 14.4 12">
+        //             <g data-name="Group 120"
+        //                 transform="translate(-288 -413.89)">
+        //                 <path data-name="Path 154" fill="currentColor"
+        //                     d="M298.7,418.289l-2.906-4.148a.835.835,0,0,0-.528-.251.607.607,0,0,0-.529.251l-2.905,4.148h-3.17a.609.609,0,0,0-.661.625v.191l1.651,5.84a1.336,1.336,0,0,0,1.255.945h8.588a1.261,1.261,0,0,0,1.254-.945l1.651-5.84v-.191a.609.609,0,0,0-.661-.625Zm-5.419,0,1.984-2.767,1.98,2.767Zm1.984,5.024a1.258,1.258,0,1,1,1.319-1.258,1.3,1.3,0,0,1-1.319,1.258Zm0,0">
+        //                 </path>
+        //             </g>
+        //         </svg>`;
+        // cart_after_svg.innerHTML = 'Cart';
+        // parent_of_card.classList.remove('parent-of-cart');
         else{
             let counting_after_local = document.createElement('div');
             counting_after_local.classList.add('add_to_cart');
@@ -438,15 +365,17 @@ $(document).ready(function () {
             let plus_btn_after_local = document.createElement('span');
             plus_btn_after_local.innerHTML = '+';
             plus_btn_after_local.classList.add('plus_btn_after_local');
-            counting_after_local.appendChild(plus_btn_after_local);
+            
             let counter_after_local = document.createElement('span');
             counter_after_local.classList.add('counter_after_local','products-count');
-            counting_after_local.appendChild(counter_after_local);
+            
             counter_after_local.innerHTML = product_count_in_storage;
             let minus_btn_after_local = document.createElement('span');
             minus_btn_after_local.classList.add('minus_btn_after_local');
             minus_btn_after_local.innerHTML = '-';
             counting_after_local.appendChild(minus_btn_after_local);
+            counting_after_local.appendChild(counter_after_local);
+            counting_after_local.appendChild(plus_btn_after_local);
             plus_btn_after_local.addEventListener('click', function(){
                 addItem(product_id,product.price);
             })
@@ -593,6 +522,7 @@ function creatingBacketProduct(product_name, product_id, counter, card_image, pr
 
     // ----------------------------------------------
     let div_center = document.createElement('div');
+    div_center.classList.add('div_center');
     card_div_4.appendChild(div_center);
     let h_6 = document.createElement('h6');
     h_6.classList.add('card-title');
@@ -691,7 +621,6 @@ function addOnClick(e, x) {
     if (clicked_element.closest('.add_to_cart') != null) {
         var card_parent = x.closest('.card');
         var parent_of_cart = card_parent.querySelector('.price-button');
-        var fixed_price = card_parent.querySelector('.price-number').textContent.replace('$', '');
         var big_parent = parent_of_cart.parentElement;
         var all_parent = big_parent.parentElement;
         var card_image = all_parent.children[0].getAttribute('src');
@@ -726,7 +655,9 @@ function addOnClick(e, x) {
                     }
 
                 }
+                console.log('ifden col');
                 if (!find_product) {
+                    console.log('ifin ici');
                     let card_products = document.querySelector('#card_products');
                     let card_div_1 = document.createElement('div');
 
@@ -745,7 +676,7 @@ function addOnClick(e, x) {
                     // -----------------------------------
                     let card_div_4 = document.createElement('div');
                     card_div_3.appendChild(card_div_4);
-                    card_div_4.classList.add('card_div_4', 'col-md-8', 'd-flex', 'justify-content-around');
+                    card_div_4.classList.add('card_div_4', 'col-md-9', 'd-flex', 'justify-content-around');
                     let div_4_child = document.createElement('div');
                     div_4_child.classList.add('counters-class');
                     let div_4_child_2 = document.createElement('span');

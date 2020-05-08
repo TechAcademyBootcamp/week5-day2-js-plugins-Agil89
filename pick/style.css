@@ -155,10 +155,7 @@ body{
     background-color: white;
     color: #009e7f;
 }
-.price-button span:hover{
-    background-color: #009e7f;
-    
-}
+
 .backet{
     height: 100px;
     width:100px;
@@ -239,8 +236,13 @@ body{
 }
 
 .card-img{
-    width:87px !important;
+    width:80px !important;
+    height: 80px;
     
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:10px;
 }
 
 .card-body{
@@ -252,13 +254,18 @@ body{
 .counters-class{
     display: flex;
     flex-flow: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
+    height: 90px !important;
 }
 .product-x{
     align-self:flex-end;
     margin-left: 30px;
 
+}
+.products-count{
+    background-color: #009e7f !important;
+    color: white !important;
 }
 .product-x svg{
     cursor: pointer;
@@ -278,17 +285,31 @@ body{
     background-color: #f7f7f7;
 }
 .plus-btn{
-    font-size: 25px;
+    font-size: 18px;
     color: rgb(121, 121, 121);
     cursor: pointer;
+    background-color: #009e7f !important;
+    color: white !important;
+    margin-left: 8px;
+    
 }
 .minus-btn{
-    font-size: 25px;
+    font-size: 18px;
     color: rgb(121, 121, 121);
     cursor: pointer;
+    margin-right: 8px;
+    
+}
+.card-title{
+    font-size: 13px;
+    font-weight: bold;
+}
+.div_center{
+    width: 70px;
 }
 .card_div_3{
     border-top:1px solid rgb(198, 198, 198);
+    height: 100px;
 }
 .card-text{
     font-size:14px;
@@ -301,6 +322,7 @@ body{
 }
 .prd-unit{
     color:rgb(121, 121, 121);
+    padding-right: 3px;
 }
 .end_div_div_span{
     font-weight:bold;
@@ -456,13 +478,17 @@ body{
 .minus-btn{
     height: 2px;
 }
-.minus-btn:hover{
-    background-color: white !important;
+
+
+.price_button_div{
+    
+    display: flex;
+    align-items: center;
 }
 .price-button{
-    height: 43px;
-    
+    height: 30px;
 }
+
 .counting_after_local{
     width:60px;
     height: 30px;
@@ -508,4 +534,16 @@ body{
 }
 .thumbs_div{
     padding-right: 10px;
+}
+.parent_of_svg span{
+    color: #009e7f;
+    background-color: white;
+}
+
+.add_to_cart{
+    cursor: pointer;
+    width:60px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }

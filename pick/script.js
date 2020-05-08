@@ -614,7 +614,6 @@ function addOnClick(e, x) {
     console.log(clicked_element.closest('.add_to_cart'));
     console.log(clicked_element);
     if (clicked_element.closest('.add_to_cart') != null) {
-        if(card_body_parent!=null){
         var card_parent = x.closest('.card');
         var parent_of_cart = card_parent.querySelector('.price-button');
         var big_parent = parent_of_cart.parentElement;
@@ -950,11 +949,8 @@ function addOnClick(e, x) {
             totalSum += parseInt(sum)
             document.querySelectorAll('.price-sums').forEach(element =>
                 element.innerHTML = totalSum);
-        
-            });
-    
-        };
-    } else {
+        });
+    } else if (card_body_parent) {
         document.getElementsByClassName('card-modal-btn')[0].click();
         let card_img = x.querySelector('.cards_imgs').getAttribute('src');
         document.querySelector('.modal-main-img').setAttribute('src', card_img);
@@ -966,7 +962,6 @@ function addOnClick(e, x) {
         document.querySelector('.unit-place').innerText = prdct_unit;
         let prdct_price = x.querySelector('.price-number').textContent;
         document.querySelector('.price-place').innerText = prdct_price;
-
     }
 
 }

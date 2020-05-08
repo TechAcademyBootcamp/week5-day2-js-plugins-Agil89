@@ -471,8 +471,16 @@ document.querySelector('.modal_login_btn').addEventListener('click', function (e
     document.querySelector('#form-id-2').classList.remove('d-block');
     document.querySelector('.login_modal').classList.remove('d-none');
 })
+let all_sum_p = parseInt(document.querySelector('.price-sums').textContent);
 
 function creatingBacketProduct(product_name, product_id, counter, card_image, prices_num, product_unit, sum) {
+    document.querySelectorAll('.item-count').forEach(element =>
+        element.innerHTML = JSON.parse(data).length);
+    let all_sum = counter * prices_num;
+    all_sum_p = all_sum_p + all_sum;
+    console.log(all_sum_p);
+    document.querySelectorAll('.price-sums').forEach(element=>
+        element.innerHTML = all_sum_p );
     let card_products = document.querySelector('#card_products');
     let card_div_1 = document.createElement('div');
     card_products.appendChild(card_div_1);
@@ -588,26 +596,6 @@ if (localStorage.getItem('product_array')) {
         })
     }
 }
-// console.log(document.querySelector('.products-count').textContent);
-
-// document.querySelector('.cart-in-modal').addEventListener('click', function(){
-//     this.classList.add('d-none');
-//     let backet_div_in_modal = document.createElement('div');
-//     let minus_elem_modal = document.createElement('span');
-//     backet_div_in_modal.appendChild(minus_elem_modal);
-//     minus_elem_modal.innerText = "-";
-//     minus_elem_modal.classList.add('minus_elem_modal');
-//     let count_elem_modal = document.createElement('span');
-//     backet_div_in_modal.appendChild(count_elem_modal);
-//     count_elem_modal.innerText = document.querySelector('.products-count').innerHTML;
-
-// })
-
-
-// var cards = document.getElementsByClassName('card');
-
-// for (var i = 0; i < cards.length; i++) {
-//     cards[i].addEventListener('click', function (event) {
 function addOnClick(e, x) {
     var clicked_element = e.target;
     let card_body_parent = e.target.closest('.card');

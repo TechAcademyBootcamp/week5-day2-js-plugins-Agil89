@@ -4,9 +4,11 @@ function saveStorage(product_id) {
     let parent = document.querySelectorAll(`[product_id="${product_id}"]`);
     // let product_id = parent[1].getAttribute('product_id');
     let count_of_products = 0;
-    if(parent[0].querySelector('.products-count')){
+    if (parent[0].querySelector('.products-count')) {
         count_of_products = parseInt(parent[0].querySelector('.products-count').textContent)
     }
+    if (count_of_products === 0)
+        return false;
     var saveData = {
         "prd_id": product_id,
         "prd_count": count_of_products,
@@ -68,36 +70,29 @@ function removeItem(product_id) {
         element.innerHTML = leng);
 
 }
-function removeItemFromStorage(product_id){
-    console.log(localStorage);
+function removeItemFromStorage(product_id) {
     let array = JSON.parse(localStorage.getItem('product_array'));
-    let removed_array = array.filter((element)=>{
-        if(element.prd_id!=product_id){
+    let removed_array = array.filter((element) => {
+        if (element.prd_id != product_id) {
             return element;
         }
     })
-    localStorage.setItem('product_array',JSON.stringify(removed_array));
-    console.log(localStorage);
+    localStorage.setItem('product_array', JSON.stringify(removed_array));
+    data = JSON.parse(localStorage.getItem('product_array'));
 }
 function minusItem(product_id, prices_num) {
     let parent = document.querySelectorAll(`[product_id="${product_id}"]`);
     all_sum_plus = parseInt(document.querySelector('.price-sums').textContent);
     all_sum_plus = parseInt(all_sum_plus) - parseInt(prices_num);
     counter = parseInt(parent[0].querySelector('.products-count').textContent);
-
     counter--;
     if (counter == 0) {
-        removeItem(product_id);
-        let parent_of_card= parent[1].querySelector('.price-button');
+        let parent_of_card = parent[1].querySelector('.price-button');
         let parent_of_svg = document.createElement('span');
         parent_of_card.innerHTML = '';
         parent_of_card.appendChild(parent_of_svg);
         parent_of_svg.classList.add('add_to_cart');
         parent_of_svg.classList.add('parent_of_svg');
-        // let svg_after_count = document.createElement('');
-        // parent_of_svg.appendChild(svg_after_count);
-        // let cart_after_svg = document.createElement('span');
-        // parent_of_svg.appendChild(cart_after_svg);
         parent_of_svg.innerHTML = `<svg xmlns="
         http://www.w3.org/2000/svg" width="14.4" height="12"
                     viewBox="0 0 14.4 12">
@@ -108,12 +103,9 @@ function minusItem(product_id, prices_num) {
                         </path>
                     </g>
                 </svg>Cart`;
-        // cart_after_svg.innerHTML = '';
         parent_of_card.classList.remove('parent-of-cart');
-        // parent_of_svg.addEventListener('click', function(event){
-        //     addOnClick(event,parent[1]);
-        // })
         removeItemFromStorage(product_id);
+        removeItem(product_id);
 
     }
     parent.forEach((element) => {
@@ -302,7 +294,7 @@ $(document).ready(function () {
         name_span.classList.add('name_span');
         unit_count_span.classList.add('unit_count_span');
         let price_div = document.createElement('div');
-        price_div.classList.add('price', 'd-flex', 'justify-content-between', 'align-items-center', 'mt-4', 'ml-4', 'mr-4','mb-3')
+        price_div.classList.add('price', 'd-flex', 'justify-content-between', 'align-items-center', 'mt-4', 'ml-4', 'mr-4', 'mb-3')
         product_div.appendChild(price_div);
         let price_number_div = document.createElement('div');
         let price_button_div = document.createElement('div');
@@ -319,7 +311,7 @@ $(document).ready(function () {
         price_number_div.appendChild(price_number_count);
         price_number_div.appendChild(price_number_symbol);
         let price_button_svg = document.createElement('span');
-        price_button_svg.classList.add('add_to_cart','cart_before_click');
+        price_button_svg.classList.add('add_to_cart', 'cart_before_click');
         let product_count_in_storage = findProductInStorage(product_id);
         if (product_count_in_storage === 0) {
             price_button_div.appendChild(price_button_svg);
@@ -357,7 +349,7 @@ $(document).ready(function () {
         //         </svg>`;
         // cart_after_svg.innerHTML = 'Cart';
         // parent_of_card.classList.remove('parent-of-cart');
-        else{
+        else {
             let counting_after_local = document.createElement('div');
             counting_after_local.classList.add('add_to_cart');
             counting_after_local.classList.add('counting_after_local');
@@ -365,10 +357,10 @@ $(document).ready(function () {
             let plus_btn_after_local = document.createElement('span');
             plus_btn_after_local.innerHTML = '+';
             plus_btn_after_local.classList.add('plus_btn_after_local');
-            
+
             let counter_after_local = document.createElement('span');
-            counter_after_local.classList.add('counter_after_local','products-count');
-            
+            counter_after_local.classList.add('counter_after_local', 'products-count');
+
             counter_after_local.innerHTML = product_count_in_storage;
             let minus_btn_after_local = document.createElement('span');
             minus_btn_after_local.classList.add('minus_btn_after_local');
@@ -376,11 +368,11 @@ $(document).ready(function () {
             counting_after_local.appendChild(minus_btn_after_local);
             counting_after_local.appendChild(counter_after_local);
             counting_after_local.appendChild(plus_btn_after_local);
-            plus_btn_after_local.addEventListener('click', function(){
-                addItem(product_id,product.price);
+            plus_btn_after_local.addEventListener('click', function () {
+                addItem(product_id, product.price);
             })
-            minus_btn_after_local.addEventListener('click', function(){
-                minusItem(product_id,product.price);
+            minus_btn_after_local.addEventListener('click', function () {
+                minusItem(product_id, product.price);
             })
 
         }
@@ -618,7 +610,11 @@ if (localStorage.getItem('product_array')) {
 //     cards[i].addEventListener('click', function (event) {
 function addOnClick(e, x) {
     var clicked_element = e.target;
+    let card_body_parent = e.target.closest('.card');
+    console.log(clicked_element.closest('.add_to_cart'));
+    console.log(clicked_element);
     if (clicked_element.closest('.add_to_cart') != null) {
+        if(card_body_parent!=null){
         var card_parent = x.closest('.card');
         var parent_of_cart = card_parent.querySelector('.price-button');
         var big_parent = parent_of_cart.parentElement;
@@ -647,17 +643,13 @@ function addOnClick(e, x) {
                 for (let products of arr_of_product) {
                     //iterate edirik arrayin elementlerini
                     if (products.prd_id == product_id) {
-                        console.log(products.prd_id, product_id);
                         find_product = true;
                         //eger elementler tekrar deyilse bura girir
-
                         break;
                     }
 
                 }
-                console.log('ifden col');
                 if (!find_product) {
-                    console.log('ifin ici');
                     let card_products = document.querySelector('#card_products');
                     let card_div_1 = document.createElement('div');
 
@@ -958,7 +950,10 @@ function addOnClick(e, x) {
             totalSum += parseInt(sum)
             document.querySelectorAll('.price-sums').forEach(element =>
                 element.innerHTML = totalSum);
-        });
+        
+            });
+    
+        };
     } else {
         document.getElementsByClassName('card-modal-btn')[0].click();
         let card_img = x.querySelector('.cards_imgs').getAttribute('src');
